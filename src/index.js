@@ -8,7 +8,7 @@ function getRegexp(state) {
 	return new RegExp(state.opts.regexp);
 }
 
-export default function() {
+export default function({ types }) {
 	return {
 		name: "strip-test-func",
 		visitor: {
@@ -22,6 +22,11 @@ export default function() {
 			},
 			FunctionDeclaration(path, state) {
 				if (path.node.id.name.match(getRegexp(state))) {
+					path.remove();
+				}
+			},
+			AssignmentExpression(path, state) {
+				if (types.isMemberExpression(path.node.left) && path.node.left.property.name.match(getRegexp(state))) {
 					path.remove();
 				}
 			}
