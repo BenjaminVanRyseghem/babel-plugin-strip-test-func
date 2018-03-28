@@ -26,7 +26,10 @@ export default function({ types }) {
 				}
 			},
 			AssignmentExpression(path, state) {
-				if (types.isMemberExpression(path.node.left) && path.node.left.property.name.match(getRegexp(state))) {
+				if (types.isMemberExpression(path.node.left) &&
+					types.isIdentifier(path.node.left.property) &&
+					path.node.left.property.name.match(getRegexp(state)))
+				{
 					path.remove();
 				}
 			}
