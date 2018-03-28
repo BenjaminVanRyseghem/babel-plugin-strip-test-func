@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-strip-test-func",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Babel plugin stripping test-only function declarations",
   "repository": "https://github.com/BenjaminVanRyseghem/babel-plugin-strip-test-func",
   "author": "Benjamin Van Ryseghem <benjamin@vanryseghem.com>",
