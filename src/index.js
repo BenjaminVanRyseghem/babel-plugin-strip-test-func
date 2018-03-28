@@ -9,6 +9,11 @@ function getRegexp(state) {
 }
 
 export default function({ types }) {
+	if (process.env.NODE_ENV === "test" ||
+		process.env.BABEL_ENV === "test") {
+		return;
+	}
+
 	return {
 		name: "strip-test-func",
 		visitor: {
