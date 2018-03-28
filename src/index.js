@@ -14,14 +14,14 @@ export default function({ types }) {
 		visitor: {
 			VariableDeclaration(path, state) {
 				path.node.declarations.forEach((declaration, index) => {
-					if (declaration.id.name.match(getRegexp(state))) {
+					if (declaration.id.name && declaration.id.name.match(getRegexp(state))) {
 						let declarationPath = path.get(`declarations.${index}`);
 						declarationPath.remove();
 					}
 				})
 			},
 			FunctionDeclaration(path, state) {
-				if (path.node.id.name.match(getRegexp(state))) {
+				if (path.node.id.name && path.node.id.name.match(getRegexp(state))) {
 					path.remove();
 				}
 			},
